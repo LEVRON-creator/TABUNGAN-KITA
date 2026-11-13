@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0A1A2F">
+  <meta name="description" content="TABUNGAN KITA — pencatat tabungan, pemasukan, pengeluaran, dan anggaran mingguan pribadi.">
+  <title>TABUNGAN KITA</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== HALAMAN LOGIN / DAFTAR ===== -->
+  <section id="auth-screen" class="auth-screen hidden">
+    <div class="auth-card">
+      <div class="brand brand-lg">
+        <span class="logo" data-icon="logo"></span>
+        <h1>TABUNGAN KITA</h1>
+        <p class="muted" id="auth-subtitle">Masuk untuk melanjutkan</p>
+      </div>
+
+      <form id="login-form" class="form" novalidate>
+        <label class="field">
+          <span>Username</span>
+          <input class="input" id="login-user" autocomplete="username" autocapitalize="none" spellcheck="false" required>
+        </label>
+        <label class="field">
+          <span>Password</span>
+          <div class="pw-wrap">
+            <input class="input" type="password" id="login-pass" autocomplete="current-password" required>
+            <button type="button" class="pw-toggle" data-toggle="login-pass" data-icon="eye" aria-label="Tampilkan password"></button>
+          </div>
+        </label>
+        <p class="form-error" id="login-error" role="alert"></p>
+        <button class="btn btn-primary btn-block" type="submit">Login</button>
+      </form>
+
+      <form id="register-form" class="form hidden" novalidate>
+        <label class="field">
+          <span>Nama lengkap</span>
+          <input class="input" id="reg-name" autocomplete="name" maxlength="40" required>
+        </label>
+        <label class="field">
+          <span>Username</span>
+          <input class="input" id="reg-user" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="20" required>
+        </label>
+        <label class="field">
+          <span>Password (min. 6 karakter)</span>
+          <div class="pw-wrap">
+            <input class="input" type="password" id="reg-pass" autocomplete="new-password" required>
+            <button type="button" class="pw-toggle" data-toggle="reg-pass" data-icon="eye" aria-label="Tampilkan password"></button>
+          </div>
+        </label>
+        <label class="field">
+          <span>Ulangi password</span>
+          <div class="pw-wrap">
+            <input class="input" type="password" id="reg-pass2" autocomplete="new-password" required>
+            <button type="button" class="pw-toggle" data-toggle="reg-pass2" data-icon="eye" aria-label="Tampilkan password"></button>
+          </div>
+        </label>
+        <p class="form-error" id="register-error" role="alert"></p>
+        <button class="btn btn-primary btn-block" type="submit">Daftar Akun</button>
+      </form>
+
+      <p class="switch">
+        <span id="switch-text">Belum punya akun?</span>
+        <button type="button" id="switch-auth" class="link">Daftar akun</button>
+      </p>
+      <p class="notice">Login ini bersifat lokal, untuk penggunaan pribadi/demo. Data tersimpan di browser perangkat ini dan bukan sistem keamanan akun produksi.</p>
+    </div>
+  </section>
+
+  <!-- ===== APLIKASI ===== -->
+  <div id="app-screen" class="app hidden">
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo" data-icon="logo"></span>
+        <span>TABUNGAN KITA</span>
+      </div>
+      <span class="topbar-user" id="topbar-user"></span>
+    </header>
+
+    <main class="content">
+      <section class="view" data-view="home" id="view-home"></section>
+      <section class="view hidden" data-view="tabungan" id="view-tabungan"></section>
+      <section class="view hidden" data-view="transaksi" id="view-transaksi"></section>
+      <section class="view hidden" data-view="anggaran" id="view-anggaran"></section>
+      <section class="view hidden" data-view="profil" id="view-profil"></section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Navigasi utama">
+      <button class="nav-btn active" data-nav="home"><span class="nav-ico" data-icon="home"></span>Home</button>
+      <button class="nav-btn" data-nav="tabungan"><span class="nav-ico" data-icon="save"></span>Tabungan</button>
+      <button class="nav-btn" data-nav="transaksi"><span class="nav-ico" data-icon="list"></span>Transaksi</button>
+      <button class="nav-btn" data-nav="anggaran"><span class="nav-ico" data-icon="budget"></span>Anggaran</button>
+      <button class="nav-btn" data-nav="profil"><span class="nav-ico" data-icon="user"></span>Profil</button>
+    </nav>
+
+    <div id="modal" class="modal hidden">
+      <div class="modal-backdrop" data-close></div>
+      <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="sheet-head">
+          <h3 id="modal-title"></h3>
+          <button class="icon-btn" data-close data-icon="x" aria-label="Tutup"></button>
+        </div>
+        <div id="modal-body"></div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+    <input type="file" id="import-file" accept=".json,application/json" hidden>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
